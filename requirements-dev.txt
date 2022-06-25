@@ -2,3 +2,4 @@ black
 coverage
 pylint
 pytest
+requests-mock

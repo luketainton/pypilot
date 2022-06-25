@@ -1,4 +1,4 @@
-name: CI
+name: CI - Pull request
 on:
   pull_request:
     paths-ignore:

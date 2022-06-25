@@ -112,6 +112,7 @@ jobs:
     name: Publish
     needs: build
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
     steps:
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1

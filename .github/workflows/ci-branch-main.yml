@@ -1,0 +1,77 @@
+name: CI - Merge to main
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE.md'
+      - '.gitignore'
+      - 'renovate.json'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: pip install -r requirements.txt && pip install -r requirements-dev.txt
+      - name: Lint
+        run: pylint --recursive=yes .
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.10' ]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: pip install -r requirements.txt && pip install -r requirements-dev.txt
+      - name: Run test suite
+        run: coverage run -m py.test -v
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v3
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      # - name: Install dependencies
+      #   run: pip install -r requirements.txt && pip install -r requirements-dev.txt
+      - name: Install build dependencies
+        run: pip install setuptools wheel
+      - name: Build wheel file
+        run: python setup.py bdist_wheel
+      - id: skip_check
+        uses: actions/upload-artifact@v3
+        with:
+          name: whl
+          path: dist/
+
+  publish:
+    needs: build
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}

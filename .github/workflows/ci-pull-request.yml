@@ -1,30 +1,15 @@
-name: CI
+name: CI - Pull request
 on:
-  workflow_dispatch:
-  push:
+  pull_request:
     paths-ignore:
       - 'README.md'
       - 'LICENSE.md'
       - '.gitignore'
       - 'renovate.json'
-  pull_request:
 
 jobs:
-  skip_duplicate:
-    name: Skip if duplicate run
-    runs-on: ubuntu-latest
-    outputs:
-      should_skip: ${{ steps.skip_check.outputs.should_skip }}
-    steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@v4.0.0
-        with:
-          github_token: ${{ github.token }}
-
   analyze:
     name: Analyze
-    needs: skip_duplicate
-    if: ${{ needs.skip_duplicate.outputs.should_skip == 'false' }}
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -46,8 +31,6 @@ jobs:
 
   lint:
     name: Lint
-    needs: skip_duplicate
-    if: ${{ needs.skip_duplicate.outputs.should_skip == 'false' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -63,8 +46,6 @@ jobs:
 
   test:
     name: Run unit tests
-    needs: skip_duplicate
-    if: ${{ needs.skip_duplicate.outputs.should_skip == 'false' }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -82,40 +63,3 @@ jobs:
         run: coverage run -m py.test -v
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v3
-
-  build:
-    name: Build
-    needs:
-      - lint
-      - test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - name: Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      # - name: Install dependencies
-      #   run: pip install -r requirements.txt && pip install -r requirements-dev.txt
-      - name: Install build dependencies
-        run: pip install setuptools wheel
-      - name: Build wheel file
-        run: python setup.py bdist_wheel
-      - id: skip_check
-        uses: actions/upload-artifact@v3
-        with:
-          name: whl
-          path: dist/
-
-  publish:
-    name: Publish
-    needs: build
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}

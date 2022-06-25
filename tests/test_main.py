@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+"""MODULE: Provides test cases for app/main.py."""
+
 # from app.ip import is_ip_address
 
 

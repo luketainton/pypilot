@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+"""MODULE: Provides functions to call various APIs to retrieve IP/prefix information."""
+
 import ipaddress
 import requests
 

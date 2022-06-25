@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+"""MODULE: Provides test cases for app/ip_info.py."""
+
 from app.ip_info import (  # pragma: no cover
     get_ip_information,
     get_autonomous_system_number,

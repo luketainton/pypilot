@@ -1,5 +1,7 @@
 #!/usr/local/env python3
 
+"""MODULE: Provides CLI arguments to the application."""
+
 import argparse
 
 from app.query_normalisation import get_public_ip

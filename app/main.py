@@ -1,5 +1,7 @@
 #!/usr/local/bin/python3
 
+"""MODULE: Main application module."""
+
 import sys
 
 from app.args import parse_args

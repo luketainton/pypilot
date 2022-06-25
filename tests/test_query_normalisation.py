@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+"""MODULE: Provides test cases for app/query_normalisation.py."""
+
 from app.query_normalisation import (  # pragma: no cover
     is_ip_address,
     resolve_domain_name,

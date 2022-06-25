@@ -1,4 +1,4 @@
-# iPilot [![CI](https://github.com/luketainton/pypilot/actions/workflows/ci.yml/badge.svg)](https://github.com/luketainton/pypilot/actions/workflows/ci.yml)
+# iPilot [![CI](https://github.com/luketainton/pypilot/actions/workflows/ci-branch-main.yml/badge.svg)](https://github.com/luketainton/pypilot/actions/workflows/ci-branch-main.yml)
 
 ## Description
 IP Information Lookup Tool

@@ -18,11 +18,20 @@ def test_get_ip_information() -> None:
     assert ip_info.get("status") == "success" and ip_info.get("query") == test_query
 
 
-def test_get_ip_information_broken_api() -> None:
+def test_get_ip_information_broken_api_response() -> None:
     """TEST: ensure that None is returned if the IP API response is broken."""
     test_query = "1.2.3.4"
     with requests_mock.Mocker() as mocker:
         mocker.get(f"http://ip-api.com/json/{test_query}", text="error")
+        resp = get_ip_information(test_query)
+        assert not resp
+
+
+def test_get_ip_information_bad_response() -> None:
+    """TEST: ensure that None is returned if the IP API returns code 404."""
+    test_query = "1.2.3.4"
+    with requests_mock.Mocker() as mocker:
+        mocker.get(f"http://ip-api.com/json/{test_query}", status_code=404)
         resp = get_ip_information(test_query)
         assert not resp
 
@@ -41,13 +50,25 @@ def test_get_prefix_information() -> None:
     assert "144.254.0.0/16" in prefixes
 
 
-def test_get_prefix_information_broken_api() -> None:
+def test_get_prefix_information_broken_api_response() -> None:
     """TEST: ensure that None is returned if the prefix API response is broken."""
     autonomous_system = "AS109"
     with requests_mock.Mocker() as mocker:
         mocker.get(
             f"https://api.hackertarget.com/aslookup/?q={str(autonomous_system)}",
             text="error",
+        )
+        resp = get_prefix_information(autonomous_system)
+        assert not resp
+
+
+def test_get_prefix_information_bad_response() -> None:
+    """TEST: ensure that None is returned if the prefix API returns code 404."""
+    autonomous_system = "AS109"
+    with requests_mock.Mocker() as mocker:
+        mocker.get(
+            f"https://api.hackertarget.com/aslookup/?q={str(autonomous_system)}",
+            status_code=404,
         )
         resp = get_prefix_information(autonomous_system)
         assert not resp

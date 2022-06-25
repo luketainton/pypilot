@@ -4,6 +4,7 @@ on:
     paths-ignore:
       - 'README.md'
       - 'LICENSE.md'
+      - 'CHANGELOG.md'
       - '.gitignore'
       - 'renovate.json'
 

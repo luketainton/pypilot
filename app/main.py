@@ -38,6 +38,9 @@ def main():
 
     # Get information from API
     ip_info = get_ip_information(ip_address)
+    if not ip_info:
+        print("ERROR: could not retrieve IP information from API.")
+        sys.exit(1)
     as_number = get_autonomous_system_number(ip_info.get("as"))
 
     # Assemble list for table generation
@@ -56,7 +59,11 @@ def main():
     # If wanted, get prefix information
     if args.prefixes:
         prefix_info = get_prefix_information(as_number)
-        table_data.append(["Prefixes", generate_prefix_string(prefix_info)])
+        if not prefix_info:
+            print("ERROR: could not retrieve prefix information from API.")
+            sys.exit(1)
+        else:
+            table_data.append(["Prefixes", generate_prefix_string(prefix_info)])
 
     print_table(table_data)
 

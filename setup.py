@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+"""SETUP: Build application .whl file."""
+
 from setuptools import setup
 
 from app._version import VERSION

@@ -12,7 +12,7 @@ setup(
     description="IP Information Lookup Tool",
     author="Luke Tainton",
     author_email="luke@tainton.uk",
-    packages=["ipilot"],
+    packages=["app"],
     install_requires=["requests"],
     entry_points={
         "console_scripts": [

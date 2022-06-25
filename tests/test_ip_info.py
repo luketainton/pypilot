@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from app.ip_info import (
+from app.ip_info import (  # pragma: no cover
     get_ip_information,
     get_autonomous_system_number,
     get_prefix_information,

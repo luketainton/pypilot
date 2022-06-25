@@ -4,12 +4,12 @@ from tabulate import tabulate
 
 
 def generate_prefix_string(prefixes: list) -> str:
-    """Generate a string that spilts prefixes into rows of 5."""
-    n = 4
+    """Generate a string that spilts prefixes into rows of 4."""
+    num_per_row = 4
     try:
         ret = ""
-        for i in range(0, len(prefixes), n):
-            ret += ", ".join(prefixes[i : i + n]) + "\n"
+        for i in range(0, len(prefixes), num_per_row):
+            ret += ", ".join(prefixes[i : i + num_per_row]) + "\n"
         return ret
     except AttributeError:
         return None

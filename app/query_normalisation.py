@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
+import socket
 import ipaddress
 import requests
-import socket
 
 
 def is_ip_address(query: str) -> bool:
@@ -17,13 +17,13 @@ def is_ip_address(query: str) -> bool:
 def resolve_domain_name(domain_name: str) -> ipaddress.IPv4Address:
     """Resolve a domain name via DNS or return None."""
     try:
-        ip = socket.gethostbyname(domain_name)
+        ip_address = socket.gethostbyname(domain_name)
     except socket.gaierror:
-        ip = None
-    return ip
+        ip_address = None
+    return ip_address
 
 
 def get_public_ip() -> ipaddress.IPv4Address:
     """Get the user's current public IPv4 address."""
-    ip = requests.get("https://api.ipify.org").text
-    return ip
+    ip_address = requests.get("https://api.ipify.org").text
+    return ip_address

@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
-from app.query_normalisation import is_ip_address, resolve_domain_name, get_public_ip
+from app.query_normalisation import (  # pragma: no cover
+    is_ip_address,
+    resolve_domain_name,
+    get_public_ip,
+)
 
 
 def test_is_ip_address_true() -> None:

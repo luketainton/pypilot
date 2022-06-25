@@ -1,9 +1,11 @@
 #!/usr/local/bin/python3
 
+import sys
+
 from app.args import parse_args
 from app.print_table import print_table, generate_prefix_string
 from app.query_normalisation import is_ip_address, resolve_domain_name
-from app.ip_info import (
+from app.ip_info import (  # pragma: no cover
     get_ip_information,
     get_autonomous_system_number,
     get_prefix_information,
@@ -23,17 +25,17 @@ def main():
         print(HEADER)
 
     # Set IP to passed IP address, or resolve passed domain name to IPv4
-    ip = (
+    ip_address = (
         resolve_domain_name(args.query) if not is_ip_address(args.query) else args.query
     )
 
     # If not given an IPv4, and can't resolve to IPv4, then throw error and exit
-    if not ip:
+    if not ip_address:
         print("ERROR: could not resolve query to IPv4 address.")
-        exit(1)
+        sys.exit(1)
 
     # Get information from API
-    ip_info = get_ip_information(ip)
+    ip_info = get_ip_information(ip_address)
     as_number = get_autonomous_system_number(ip_info.get("as"))
 
     # Assemble list for table generation
@@ -42,9 +44,7 @@ def main():
         ["Organization", ip_info.get("org")],
         [
             "Location",
-            "{}/{}/{}".format(
-                ip_info.get("country"), ip_info.get("regionName"), ip_info.get("city")
-            ),
+            f"{ip_info.get('country')}/{ip_info.get('regionName')}/{ip_info.get('city')}",
         ],
         ["Timezone", ip_info.get("timezone")],
         ["Internet Service Provider", ip_info.get("isp")],

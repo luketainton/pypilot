@@ -13,6 +13,12 @@ with open("requirements.txt", "r", encoding="ascii") as dep_file:
         dependencies.append(dep_line.replace("\n", ""))
 
 
+test_dependencies = []
+with open("requirements-dev.txt", "r", encoding="ascii") as dep_file:
+    for dep_line in dep_file.readlines():
+        test_dependencies.append(dep_line.replace("\n", ""))
+
+
 setup(
     name="ipilot",
     version=VERSION,
@@ -21,9 +27,35 @@ setup(
     author_email="luke@tainton.uk",
     packages=["app"],
     install_requires=dependencies,
+    tests_require=test_dependencies,
     entry_points={
         "console_scripts": [
             "ipilot = app.main:main",
         ],
     },
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Environment :: Console",
+        "Environment :: MacOS X",
+        "Environment :: Win32 (MS Windows)",
+        "Framework :: Pytest",
+        "Intended Audience :: Information Technology",
+        "Intended Audience :: System Administrators",
+        "Intended Audience :: Telecommunications Industry",
+        "License :: Freeware",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: Implementation :: CPython",
+        "Topic :: Internet",
+        "Topic :: Internet :: Name Service (DNS)",
+        "Topic :: System :: Networking",
+    ],
 )

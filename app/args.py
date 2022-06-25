@@ -6,6 +6,7 @@ from app.query_normalisation import get_public_ip
 
 
 def parse_args() -> argparse.Namespace:
+    """Get arguments from user via the command line."""
     parser = argparse.ArgumentParser(
         description="Query information about an IP address or domain name."
     )

@@ -17,6 +17,7 @@ HEADER = """-----------------------------------------------
 
 
 def main():
+    """Main function."""
     args = parse_args()
     if not args.noheader:
         print(HEADER)

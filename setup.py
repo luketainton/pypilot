@@ -8,7 +8,7 @@ from app._version import VERSION
 
 
 dependencies = []
-with open("requirements.txt", "r") as dep_file:
+with open("requirements.txt", "r", encoding="ascii") as dep_file:
     for dep_line in dep_file.readlines():
         dependencies.append(dep_line.replace("\n", ""))
 

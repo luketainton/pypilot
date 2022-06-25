@@ -45,6 +45,9 @@ jobs:
         uses: codecov/codecov-action@v3
 
   build:
+    needs:
+      - lint
+      - test
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -70,6 +73,13 @@ jobs:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
+      - name: Create dist folder
+        run: |
+          mkdir -p dist
+      - uses: actions/download-artifact@v3
+        with:
+          name: whl
+          path: dist
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:

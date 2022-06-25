@@ -6,6 +6,7 @@ on:
       - 'README.md'
       - 'LICENSE.md'
       - '.gitignore'
+      - 'renovate.json'
   pull_request:
 
 jobs:

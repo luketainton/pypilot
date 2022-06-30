@@ -10,6 +10,7 @@ on:
       - 'CHANGELOG.md'
       - '.gitignore'
       - 'renovate.json'
+      - 'CODEOWNERS'
 
 jobs:
   skip_duplicate:

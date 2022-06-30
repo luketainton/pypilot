@@ -1,6 +1,8 @@
 {
-    "extends": [
-      "config:base"
-    ]
-  }
-  
+  "labels": ["dependencies"],
+  "assignAutomerge": true,
+  "assigneesFromCodeOwners": true,
+  "extends": [
+    "config:base"
+  ]
+}

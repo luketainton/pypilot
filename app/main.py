@@ -44,13 +44,13 @@ def main():
     as_number = get_autonomous_system_number(ip_info.get("as"))
 
     # Assemble list for table generation
+    country = ip_info.get("country")
+    region = ip_info.get("regionName")
+    city = ip_info.get("city")
     table_data = [
         ["IP Address", ip_info.get("query")],
         ["Organization", ip_info.get("org")],
-        [
-            "Location",
-            f"{ip_info.get('country')}/{ip_info.get('regionName')}/{ip_info.get('city')}",
-        ],
+        ["Location", f"{country}/{region}/{city}"],
         ["Timezone", ip_info.get("timezone")],
         ["Internet Service Provider", ip_info.get("isp")],
         ["Autonomous System", as_number],

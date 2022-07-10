@@ -2,10 +2,11 @@
 
 """MODULE: Provides functions for preparing, then printing, retrieved data."""
 
+from typing import Union
 from tabulate import tabulate
 
 
-def generate_prefix_string(prefixes: list) -> str:
+def generate_prefix_string(prefixes: list) -> Union[str, None]:
     """Generate a string that spilts prefixes into rows of 4."""
     num_per_row = 4
     try:

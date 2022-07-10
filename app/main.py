@@ -7,7 +7,7 @@ import sys
 from app.args import parse_args
 from app.print_table import print_table, generate_prefix_string
 from app.query_normalisation import is_ip_address, resolve_domain_name
-from app.ip_info import (  # pragma: no cover
+from app.ip_info import (
     get_ip_information,
     get_autonomous_system_number,
     get_prefix_information,

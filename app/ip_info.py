@@ -2,6 +2,8 @@
 
 """MODULE: Provides functions to call various APIs to retrieve IP/prefix information."""
 
+from typing import Union
+
 import ipaddress
 import requests
 
@@ -24,7 +26,7 @@ def get_autonomous_system_number(as_info: str) -> str:
     return as_number
 
 
-def get_prefix_information(autonomous_system: int) -> list:
+def get_prefix_information(autonomous_system: int) -> Union[list, None]:
     """Retrieves prefix information about a given autonomous system."""
     api_endpoint = f"https://api.hackertarget.com/aslookup/?q={str(autonomous_system)}"
     try:

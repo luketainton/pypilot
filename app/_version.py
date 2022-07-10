@@ -2,4 +2,4 @@
 
 """MODULE: Specifies app version."""
 
-VERSION = "1.2"
+VERSION = "1.2"  # pragma: no cover

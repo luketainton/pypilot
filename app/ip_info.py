@@ -12,7 +12,7 @@ def get_ip_information(ipv4_address: ipaddress.IPv4Address) -> dict:
     """Retrieves information about a given IPv4 address from IP-API.com."""
     api_endpoint = f"http://ip-api.com/json/{ipv4_address}"
     try:
-        resp = requests.get(api_endpoint)
+        resp = requests.get(api_endpoint, timeout=10)
         resp.raise_for_status()
         ret = resp.json() if resp.json().get("status") == "success" else None
     except (requests.exceptions.JSONDecodeError, requests.exceptions.HTTPError):
@@ -30,7 +30,7 @@ def get_prefix_information(autonomous_system: int) -> Union[list, None]:
     """Retrieves prefix information about a given autonomous system."""
     api_endpoint = f"https://api.hackertarget.com/aslookup/?q={str(autonomous_system)}"
     try:
-        resp = requests.get(api_endpoint)
+        resp = requests.get(api_endpoint, timeout=10)
         resp.raise_for_status()
     except requests.exceptions.HTTPError:
         return None

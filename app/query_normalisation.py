@@ -28,5 +28,5 @@ def resolve_domain_name(domain_name: str) -> ipaddress.IPv4Address:
 
 def get_public_ip() -> ipaddress.IPv4Address:
     """Get the user's current public IPv4 address."""
-    ip_address = requests.get("https://api.ipify.org").text
+    ip_address = requests.get("https://api.ipify.org", timeout=10).text
     return ip_address

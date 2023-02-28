@@ -3,7 +3,7 @@
 ## Description
 IP Information Lookup Tool
 
-## How to installx
+## How to install
 `pip install ipilot`
 
 ## How to use

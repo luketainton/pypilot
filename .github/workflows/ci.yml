@@ -10,32 +10,10 @@ on:
       - '.gitignore'
       - 'CODEOWNERS'
       - 'renovate.json'
+      - '.github/'
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      - name: Install dependencies
-        run: pip install -r requirements.txt && pip install -r requirements-dev.txt
-      - name: Lint
-        run: pylint --recursive=yes --output-format=parseable --output=lintreport.txt . || pylint-exit $?
-        continue-on-error: true
-      - name: Unit Test
-        run: |
-          coverage run -m pytest -v --junitxml=testresults.xml
-          coverage xml
-          sed -i 's/\/home\/runner\/work\/pypilot\/pypilot/\/github\/workspace/g' coverage.xml
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_CLOUD }}
+    uses: luketainton/gha-workflows/.github/workflows/ci-python.yml@main
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

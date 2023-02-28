@@ -10,6 +10,7 @@ on:
       - '.gitignore'
       - 'CODEOWNERS'
       - 'renovate.json'
+      - '.github/'
 
 jobs:
   ci:

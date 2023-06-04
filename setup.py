@@ -6,13 +6,13 @@ from setuptools import setup
 
 from app._version import VERSION
 
-dependencies = []
+dependencies: list = []
 with open("requirements.txt", "r", encoding="ascii") as dep_file:
     for dep_line in dep_file.readlines():
         dependencies.append(dep_line.replace("\n", ""))
 
 
-test_dependencies = []
+test_dependencies: list = []
 with open("requirements-dev.txt", "r", encoding="ascii") as dep_file:
     for dep_line in dep_file.readlines():
         test_dependencies.append(dep_line.replace("\n", ""))
@@ -22,6 +22,8 @@ setup(
     name="ipilot",
     version=VERSION,
     description="IP Information Lookup Tool",
+    long_description="IP Information Lookup Tool",
+    long_description_content_type="text/x-rst",
     author="Luke Tainton",
     author_email="luke@tainton.uk",
     packages=["app"],

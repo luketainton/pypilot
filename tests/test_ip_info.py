@@ -5,15 +5,15 @@
 import requests_mock
 
 from app.ip_info import (  # pragma: no cover
-    get_ip_information,
     get_autonomous_system_number,
+    get_ip_information,
     get_prefix_information,
 )
 
 
 def test_get_ip_information() -> None:
     """TEST: ensure that the IP information API is working correctly."""
-    test_query = "1.2.3.4"
+    test_query: str = "1.2.3.4"
     ip_info = get_ip_information(test_query)
     assert ip_info.get("status") == "success" and ip_info.get("query") == test_query
 

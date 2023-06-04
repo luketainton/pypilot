@@ -31,7 +31,7 @@ def test_resolve_domain_name_true() -> None:
     """TEST: Verifies that DNS resolution is working correctly."""
     domain_name = "one.one.one.one"
     expected_results: list[str] = ["1.1.1.1", "1.0.0.1"]  # Could resolve to either IP
-    assert resolve_domain_name(domain_name) in expected_results
+    assert str(resolve_domain_name(domain_name)) in expected_results
 
 
 def test_resolve_domain_name_false() -> None:

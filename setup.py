@@ -6,7 +6,6 @@ from setuptools import setup
 
 from app._version import VERSION
 
-
 dependencies = []
 with open("requirements.txt", "r", encoding="ascii") as dep_file:
     for dep_line in dep_file.readlines():

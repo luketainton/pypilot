@@ -39,7 +39,7 @@ def test_get_ip_information_bad_response() -> None:
 def test_get_autonomous_system_number() -> None:
     """TEST: ensure that AS information is parsed into AS number correctly."""
     as_info = "AS5089 Virgin Media Limited"
-    as_number = get_autonomous_system_number(as_info)
+    as_number: str = get_autonomous_system_number(as_info)
     assert as_number == "AS5089"
 
 

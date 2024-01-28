@@ -3,7 +3,7 @@ attrs==23.2.0
 certifi==2023.11.17
 charset-normalizer==3.3.2
 click==8.1.7
-dill==0.3.7
+dill==0.3.8
 exceptiongroup==1.2.0
 idna==3.6
 iniconfig==2.0.0

@@ -4,7 +4,7 @@
 
 import requests_mock
 
-from app.ip_info import (  # pragma: no cover
+from pypilot.ip_info import (  # pragma: no cover
     get_autonomous_system_number,
     get_ip_information,
     get_prefix_information,

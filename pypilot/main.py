@@ -4,14 +4,14 @@
 
 import sys
 
-from app.args import parse_args
-from app.ip_info import (
+from pypilot.args import parse_args
+from pypilot.ip_info import (
     get_autonomous_system_number,
     get_ip_information,
     get_prefix_information,
 )
-from app.print_table import generate_prefix_string, print_table
-from app.query_normalisation import is_ip_address, resolve_domain_name
+from pypilot.print_table import generate_prefix_string, print_table
+from pypilot.query_normalisation import is_ip_address, resolve_domain_name
 
 HEADER = """-----------------------------------------------
 | IP Address Information Lookup Tool (iPilot) |
@@ -20,7 +20,14 @@ HEADER = """-----------------------------------------------
 
 
 def main() -> None:
-    """Main function."""
+    """Main function.
+    
+    Args:
+        None
+    
+    Returns:
+        None
+    """
     args = parse_args()
     if not args.noheader:
         print(HEADER)

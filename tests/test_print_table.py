@@ -2,7 +2,7 @@
 
 """MODULE: Provides test cases for app/print_table.py."""
 
-from app.print_table import generate_prefix_string  # pragma: no cover
+from pypilot.print_table import generate_prefix_string  # pragma: no cover
 
 
 def test_generate_prefix_string_small() -> None:

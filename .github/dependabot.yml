@@ -42,3 +42,18 @@ updates:
       include: "scope"
     labels:
       - "dependencies"
+
+  - package-ecosystem: "devcontainers"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "luketainton"
+    reviewers:
+      - "luketainton"
+    commit-message:
+      prefix: "chore(devcontainers)"
+      prefix-development: "chore(devcontainers)"
+      include: "scope"
+    labels:
+      - "devcontainers"

@@ -2,7 +2,7 @@
 
 """MODULE: Provides test cases for app/query_normalisation.py."""
 
-from pypilot.query_normalisation import (  # pragma: no cover
+from ipilot.query_normalisation import (  # pragma: no cover
     get_public_ip,
     is_ip_address,
     resolve_domain_name,

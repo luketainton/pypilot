@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "pypilot"
+name = "ipilot"
 version = "1.3.0"
 description = "IP Information Lookup Tool"
 authors = ["Luke Tainton <luke@tainton.uk>"]
 readme = "README.md"
 
 [tool.poetry.scripts]
-app = "pypilot.main:main"
+app = "ipilot.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"

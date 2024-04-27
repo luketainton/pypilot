@@ -4,14 +4,14 @@
 
 import sys
 
-from pypilot.args import parse_args
-from pypilot.ip_info import (
+from ipilot.args import parse_args
+from ipilot.ip_info import (
     get_autonomous_system_number,
     get_ip_information,
     get_prefix_information,
 )
-from pypilot.print_table import generate_prefix_string, print_table
-from pypilot.query_normalisation import is_ip_address, resolve_domain_name
+from ipilot.print_table import generate_prefix_string, print_table
+from ipilot.query_normalisation import is_ip_address, resolve_domain_name
 
 HEADER = """-----------------------------------------------
 | IP Address Information Lookup Tool (iPilot) |

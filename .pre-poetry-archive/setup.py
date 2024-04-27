@@ -4,7 +4,7 @@
 
 from setuptools import setup
 
-from pypilot._version import VERSION
+from ipilot._version import VERSION
 
 dependencies: list = []
 with open("requirements.txt", "r", encoding="ascii") as dep_file:
@@ -31,7 +31,7 @@ setup(
     tests_require=test_dependencies,
     entry_points={
         "console_scripts": [
-            "ipilot = pypilot.main:main",
+            "ipilot = ipilot.main:main",
         ],
     },
     classifiers=[

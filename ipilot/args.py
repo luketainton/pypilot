@@ -4,7 +4,7 @@
 
 import argparse
 
-from pypilot.query_normalisation import get_public_ip
+from ipilot.query_normalisation import get_public_ip
 
 
 def parse_args() -> argparse.Namespace:  # pragma: no cover

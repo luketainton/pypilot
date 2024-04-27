@@ -1,11 +1,16 @@
 name: CI
 on:
-  workflow_call:
-    secrets:
-      SONAR_TOKEN:
-        required: true
-      SNYK_TOKEN:
-        required: true
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE.md'
+      - '.gitignore'
+      - 'CODEOWNERS'
+      - 'renovate.json'
+      - '.github/'
 
 jobs:
   ci:

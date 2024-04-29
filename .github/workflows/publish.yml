@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Setup Poetry
-        uses: abatilo/actions-poetry@v2
+        uses: abatilo/actions-poetry@v3
       - name: Install dependencies
         run: poetry install
       - name: Build wheel file

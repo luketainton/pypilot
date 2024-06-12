@@ -1,6 +1,6 @@
-astroid==3.2.0
+astroid==3.2.2
 attrs==23.2.0
-certifi==2024.2.2
+certifi==2024.6.2
 charset-normalizer==3.3.2
 click==8.1.7
 dill==0.3.8
@@ -10,13 +10,13 @@ iniconfig==2.0.0
 lazy-object-proxy==1.10.0
 mccabe==0.7.0
 mypy-extensions==1.0.0
-packaging==24.0
+packaging==24.1
 pathspec==0.12.1
 platformdirs==4.2.2
 pluggy==1.5.0
 py==1.11.0
 pyparsing==3.1.2
-requests==2.31.0
+requests==2.32.3
 six==1.16.0
 tabulate==0.9.0
 tomli==2.0.1

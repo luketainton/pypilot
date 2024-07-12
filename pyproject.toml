@@ -10,7 +10,7 @@ app = "ipilot.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-astroid = "3.2.2"
+astroid = "3.2.3"
 attrs = "23.2.0"
 certifi = "2024.7.4"
 charset-normalizer = "3.3.2"

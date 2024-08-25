@@ -1,10 +1,10 @@
-astroid==3.2.2
-attrs==23.2.0
+astroid==3.2.4
+attrs==24.2.0
 certifi==2024.7.4
 charset-normalizer==3.3.2
 click==8.1.7
 dill==0.3.8
-exceptiongroup==1.2.1
+exceptiongroup==1.2.2
 idna==3.7
 iniconfig==2.0.0
 lazy-object-proxy==1.10.0
@@ -20,7 +20,7 @@ requests==2.32.3
 six==1.16.0
 tabulate==0.9.0
 tomli==2.0.1
-tomlkit==0.12.5
+tomlkit==0.13.2
 urllib3==2.2.2
 wrapt==1.16.0
 zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability

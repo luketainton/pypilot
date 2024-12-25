@@ -1,41 +1,60 @@
 name: Publish
 on:
-  push:
-    branches:
-      - "main"
-    paths-ignore:
-      - 'README.md'
-      - 'LICENSE.md'
-      - 'CHANGELOG.md'
-      - '.gitignore'
-      - 'renovate.json'
-      - 'CODEOWNERS'
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 0"
 
 jobs:
+  test:
+    uses: luketainton/gha-workflows/.github/workflows/ci-python-poetry.yml@main
+    with:
+      python-version: 3.11
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  create_release:
+    name: Create Release
+    uses: luketainton/gha-workflows/.github/workflows/create-release.yml@main
+
   build:
+    name: Build Wheel File
+    needs: create_release
+    if: ${{ needs.create_release.outputs.success == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@v4
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Update pyproject.toml
+        run:
+          prefix="v"
+          string="${{ needs.create_release.outputs.release_name }}"
+          versionname=${string#"$prefix"}
+          sed -i "s@version = \"0.0.0\"@version = \"${versionname}\"@g" pyproject.toml
       - name: Setup Poetry
         uses: abatilo/actions-poetry@v3
       - name: Install dependencies
         run: poetry install
       - name: Build wheel file
         run: poetry build
-      - id: skip_check
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: whl
           path: dist/
+      - name: Upload Release Asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ needs.create_release.outputs.release_name }} dist/*.whl
 
   publish:
-    needs: build
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    name: Publish to PyPI
+    needs: [create_release, build]
+    if: ${{ needs.create_release.outputs.success == 'true' }}
     runs-on: ubuntu-latest
     # Specifying a GitHub environment is optional, but strongly encouraged
     environment:

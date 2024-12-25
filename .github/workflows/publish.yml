@@ -15,6 +15,7 @@ jobs:
 
   create_release:
     name: Create Release
+    needs: test
     uses: luketainton/gha-workflows/.github/workflows/create-release.yml@main
 
   build:

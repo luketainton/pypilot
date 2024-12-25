@@ -34,7 +34,8 @@ jobs:
         run:
           OLD_VERSION=$(grep ^version pyproject.toml | cut -d '"' -f 2)
           OLD_VERSION="\"$OLD_VERSION\""
-          NEW_VERSION="\"$GITHUB_REF_NAME\""
+          NEW_VERSION=$(echo "${{ needs.create_release.outputs.release_name }}" | cut -d '"' -f 2 | cut -d 'v' -f 2)
+          NEW_VERSION="\"$NEW_VERSION\""
           sed -i "s+version = $OLD_VERSION+version = $NEW_VERSION+g" pyproject.toml
       - name: Setup Poetry
         uses: abatilo/actions-poetry@v3

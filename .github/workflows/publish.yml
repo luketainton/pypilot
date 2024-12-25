@@ -30,6 +30,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Setup Poetry
+        uses: abatilo/actions-poetry@v3
       - name: Update pyproject.toml
         run:
           OLD_VERSION=$(grep ^version pyproject.toml | cut -d '"' -f 2)
@@ -37,8 +39,8 @@ jobs:
           NEW_VERSION=$(echo "${{ needs.create_release.outputs.release_name }}" | cut -d '"' -f 2 | cut -d 'v' -f 2)
           NEW_VERSION="\"$NEW_VERSION\""
           sed -i "s+version = $OLD_VERSION+version = $NEW_VERSION+g" pyproject.toml
-      - name: Setup Poetry
-        uses: abatilo/actions-poetry@v3
+          cat pyproject.toml
+          exit 1
       - name: Install dependencies
         run: poetry install
       - name: Build wheel file

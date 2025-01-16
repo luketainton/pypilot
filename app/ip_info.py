@@ -2,11 +2,10 @@
 
 """MODULE: Provides functions to call various APIs to retrieve IP/prefix information."""
 
-import ipaddress
-
-import requests
-
 from typing import Optional
+
+import ipaddress
+import requests
 
 
 def get_ip_information(ipv4_address: ipaddress.IPv4Address) -> Optional[dict]:

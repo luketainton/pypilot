@@ -1,0 +1,17 @@
+name: Conventional Commit
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+jobs:
+  validate_pr_title:
+    name: Validate PR Title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: https://git.tainton.uk/actions/conventional-commits-check-action@v1.2.3
+        with:
+          commit-message: ${{ gitea.event.pull_request.title }}

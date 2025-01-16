@@ -1,40 +1,42 @@
-[tool.poetry]
+[project]
 name = "ipilot"
 version = "0.0.0"
 description = "IP Information Lookup Tool"
-authors = ["Luke Tainton <luke@tainton.uk>"]
 readme = "README.md"
+authors = [
+    {name = "Luke Tainton", email = "luke@tainton.uk"},
+]
+requires-python = "<4.0,>=3.11"
+dependencies = [
+    "astroid==3.2.4",
+    "attrs==24.3.0",
+    "certifi==2024.12.14",
+    "charset-normalizer==3.4.1",
+    "click==8.1.8",
+    "dill==0.3.9",
+    "exceptiongroup==1.2.2",
+    "idna==3.10",
+    "iniconfig==2.0.0",
+    "lazy-object-proxy==1.10.0",
+    "mccabe==0.7.0",
+    "mypy-extensions==1.0.0",
+    "packaging==24.2",
+    "pathspec==0.12.1",
+    "platformdirs==4.3.6",
+    "pluggy==1.5.0",
+    "py==1.11.0",
+    "pyparsing==3.1.4",
+    "requests==2.32.3",
+    "six==1.17.0",
+    "tabulate==0.9.0",
+    "tomli==2.2.1",
+    "tomlkit==0.13.2",
+    "urllib3==2.2.3",
+    "wrapt==1.17.2",
+]
 
-[tool.poetry.scripts]
-app = "ipilot.main:main"
-
-[tool.poetry.dependencies]
-python = "^3.8"
-astroid = "3.2.4"
-attrs = "24.3.0"
-certifi = "2024.12.14"
-charset-normalizer = "3.4.1"
-click = "8.1.8"
-dill = "0.3.9"
-exceptiongroup = "1.2.2"
-idna = "3.10"
-iniconfig = "2.0.0"
-lazy-object-proxy = "1.10.0"
-mccabe = "0.7.0"
-mypy-extensions = "1.0.0"
-packaging = "24.2"
-pathspec = "0.12.1"
-platformdirs = "4.3.6"
-pluggy = "1.5.0"
-py = "1.11.0"
-pyparsing = "3.1.4"
-requests = "2.32.3"
-six = "1.17.0"
-tabulate = "0.9.0"
-tomli = "2.2.1"
-tomlkit = "0.13.2"
-urllib3 = "2.2.3"
-wrapt = "1.17.2"
+[project.scripts]
+app = "app.main:main"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4.0"
@@ -44,6 +46,19 @@ pylint-exit = "^1.2.0"
 pytest = "^8.1.1"
 requests-mock = "^1.12.1"
 
+
+[tool.uv]
+dev-dependencies = [
+    "black<25.0.0,>=24.4.0",
+    "coverage<8.0.0,>=7.5.0",
+    "pylint<4.0.0,>=3.1.0",
+    "pylint-exit<2.0.0,>=1.2.0",
+    "pytest<9.0.0,>=8.1.1",
+    "requests-mock<2.0.0,>=1.12.1",
+]
+
+[tool.pdm.build]
+includes = []
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"

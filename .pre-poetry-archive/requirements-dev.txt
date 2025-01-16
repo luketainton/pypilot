@@ -1,6 +1,0 @@
-black
-coverage
-pylint
-pylint-exit
-pytest
-requests-mock

@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     name: Test
-    uses: ${{ gitea.server_url }}/${{ gitea.repository }}/.gitea/workflows/ci.yml@main
+    uses: https://git.tainton.uk/public/pypilot/.gitea/workflows/ci.yml@main
     with:
       python-version: 3.13
     secrets:
@@ -17,7 +17,7 @@ jobs:
   create_release:
     name: Create Release
     needs: test
-    uses: ${{ gitea.server_url }}/actions/gha-workflows/.gitea/workflows/create-release.yml@main
+    uses: https://git.tainton.uk/actions/gha-workflows/.gitea/workflows/create-release.yml@main
     secrets:
       ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
 

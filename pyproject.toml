@@ -38,14 +38,6 @@ dependencies = [
 [project.scripts]
 app = "app.main:main"
 
-[tool.poetry.group.dev.dependencies]
-black = "^25.0.0"
-coverage = "^7.5.0"
-pylint = "^3.1.0"
-pylint-exit = "^1.2.0"
-pytest = "^8.1.1"
-requests-mock = "^1.12.1"
-
 
 [tool.uv]
 dev-dependencies = [

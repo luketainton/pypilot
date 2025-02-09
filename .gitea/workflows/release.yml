@@ -5,18 +5,13 @@ on:
     - cron: "0 9 * * 0"
 
 jobs:
-  # test:
-  #   name: Test
-  #   uses: https://git.tainton.uk/public/pypilot/.gitea/workflows/ci.yml@main
-  #   with:
-  #     python-version: 3.13
-  #   secrets:
-  #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  test:
+    name: Test
+    uses: https://git.tainton.uk/repos/pypilot/.gitea/workflows/ci.yml@main
 
   create_release:
     name: Create Release
-    # needs: test
+    needs: test
     uses: https://git.tainton.uk/actions/gha-workflows/.gitea/workflows/create-release.yml@main
     secrets:
       ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
@@ -51,8 +46,7 @@ jobs:
       - name: Setup Poetry
         uses: abatilo/actions-poetry@v4
       - name: Update pyproject.toml
-        run:
-          ./tools/update_pyproject.sh ${{ needs.create_release.outputs.release_name }}
+        run: ./tools/update_pyproject.sh ${{ needs.create_release.outputs.release_name }}
       - name: Install dependencies
         run: poetry install
       - name: Build wheel file

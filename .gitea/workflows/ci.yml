@@ -55,10 +55,11 @@ jobs:
       - name: Minimize uv cache
         run: uv cache prune --ci
 
-      - name: SonarQube Cloud Scan
+      - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4.2.1
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
 
       - name: Snyk Vulnerability Scan
         uses: snyk/actions/python@master
